@@ -1,0 +1,11 @@
+<h1>Авторизация</h1>
+
+<%= form_with scope: :sessions, url: sessions_path, data: { turbo: false } do |form| %>
+	<%= form.label :nickname, 'Ваш никнейм' %><br>
+	<%= form.text_field :nickname %><br><br>
+
+	<%= form.label :password, 'Ваш пароль' %><br>
+	<%= form.password_field :password %><br><br>
+
+	<%= form.submit 'Войти' %>
+<% end %>

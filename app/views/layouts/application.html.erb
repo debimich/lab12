@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Laba12</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" %>
+  </head>
+
+  <body>
+    <header class="container">
+      <% if current_user.present? %>
+        Вы зашли как <strong><%= current_user.nickname %></strong> |
+        <%= link_to "Выйти", '/sessions/destroy', method: :delete, id: "exit_link" %>
+      <% else %>
+        <%= link_to "Войти", new_session_path %> |
+        <%= link_to "Зарегистрироваться", new_user_path %>
+      <% end %>
+      <div>
+        <%= link_to "Спискок пользователей", users_path %>
+      </div>
+      <br>
+    </header>
+    <main class="container">
+      <% if flash[:alert].present? %>
+        <strong><%= flash[:alert] %></strong>
+      <% end %>
+
+      <%= yield %>
+    </main>
+    <footer></footer>
+  </body>
+</html>

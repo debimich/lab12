@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div>
+  <% if @user.id == session[:user_id] %>
+    <%= link_to "Изменить данные", edit_user_path(@user) %> |
+  <% end %>
+
+  <%= link_to "Вернуться к списку пользователей", users_path %>
+
+  <% if @user.id == session[:user_id] %>
+    <%= button_to "Удалить профиль", @user, method: :delete %>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'На главную', root_path %>
