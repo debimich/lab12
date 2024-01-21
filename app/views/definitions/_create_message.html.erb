@@ -1,8 +1,8 @@
 <table border="1">
   <tr>
-    <th>Определение</th>
+    <th><%= t 'definition' %></th>
 	<th></th>
-    <th>Автор</th>
+    <th><%= t 'author' %></th>
   </tr>
 
   <% @definitions.each do |defin| %>
@@ -11,7 +11,7 @@
 		<td> <%= button_to defin[:def], "/definitions/#{defin[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %> </td>
 		<td>
 			<% if current_user == defin_user %>
-				<small><%= button_to "[x]", "definitions/destroy", method: :delete, params: {id: defin[:id]}, class: "btn btn-link btn-sm nav-link", form: { data: { turbo_confirm: "Вы уверены?" } }%></small>
+				<small><%= button_to "[x]", "definitions/destroy", method: :delete, params: {id: defin[:id]}, class: "btn btn-link btn-sm nav-link", form: { data: { turbo_confirm: t("ausure") } }%></small>
 			<% end %>
 		</td>
 		<td><%= defin_user.nickname %></td>

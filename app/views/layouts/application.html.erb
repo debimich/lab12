@@ -14,15 +14,21 @@
   <body>
     <header>
 		<div class = 'container header'>
-			<a href="/"><h1>Словарь</h1></a>
-			<div>
-				<% if current_user.present? %>
-					Вы зашли как <strong><%= current_user.nickname %></strong> 
-					<%= link_to "Выйти", '/sessions/destroy', method: :delete, id: "exit_link" %>
-				<% else %>
-					<%= link_to "Войти", new_session_path %> 
-					<%= link_to "Зарегистрироваться", new_user_path %>
-				<% end %>
+			<a href="/"><h1><%= t 'dictionary' %></h1></a>
+			<div class="header_div">
+				<div class="header_buttons">
+					<a href="?locale=en"><button>EN</button></a>
+					<a href="?locale=ru"><button>RU</button></a>
+				</div>
+				<div>
+					<% if current_user.present? %>
+						<%= t 'auth_regist.log' %> <strong><%= current_user.nickname %></strong> 
+						<%= link_to t("auth_regist.exit"), '/sessions/destroy', method: :delete, id: "exit_link" %>
+					<% else %>
+						<%= link_to t("auth_regist.login"), new_session_path %> 
+						<%= link_to t("auth_regist.regist"), new_user_path %>
+					<% end %>
+				</div>
 			</div>
 	  </div>
     </header>
@@ -37,21 +43,21 @@
 		</div>
 		<dialog id="turbo-confirm">
 			<form method="dialog">
-				<p>Вы уверены, что хотите удалить?</p>
+				<p><%= t 'confirmation' %></p>
 				<div>
-					<button value="confirm">Подтвердить</button>
-					<button value="cancel">Отмена</button>
+					<button value="confirm"><%= t 'confirm' %></button>
+					<button value="cancel"><%= t 'cancel' %></button>
 				</div>
 			</form>
 		</dialog>
     </main>
     <footer>
 		<div class="container footer">
-			<p>Ссылки на автора</p>
+			<p><%= t 'footer.ref' %></p>
 			<div>
-				<a href="https://vk.com/id558236008">ВК</a>
-				<a href="https://vk.com/id558236008">Ютуб</a>
-				<a href="https://vk.com/id558236008">Телега</a>
+				<a href="https://vk.com/id558236008"><%= t 'footer.vk' %></a>
+				<a href="https://www.youtube.com/channel/UCh01XjOrFcKgrPtEL7qS8tA"><%= t 'footer.yt' %></a>
+				<a href="https://vk.com/id558236008"><%= t 'footer.tg' %></a>
 			</div>
 		</>
 	</footer>

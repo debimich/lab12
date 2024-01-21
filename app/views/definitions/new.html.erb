@@ -2,9 +2,9 @@
 	<% if current_user.present? %>
 		<div class="form">
 			<%= form_with scope: :definitions, url: definitions_path do |form| %>
-				<%= form.label :def, 'Введите определение' %>
+				<%= form.label :def, t("entdef") %>
 				<%= form.text_field :def, autocomplete: 'off'%>
-				<%= form.submit 'Добавить' %>
+				<%= form.submit t 'form.add' %>
 			<% end %>
 		</div>
 	<% end %>

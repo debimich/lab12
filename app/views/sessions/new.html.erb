@@ -1,14 +1,14 @@
 <div class="auth_div">
-	<h1>Авторизация</h1>
+	<h1><%= t 'auth_regist.signin' %></h1>
 	<div class="form">
 		<%= form_with scope: :sessions, url: sessions_path, data: { turbo: false } do |form| %>
-			<%= form.label :nickname, 'Ваш никнейм' %>
+			<%= form.label :nickname, t("auth_regist.nickname") %>
 			<%= form.text_field :nickname %>
 
-			<%= form.label :password, 'Ваш пароль' %>
+			<%= form.label :password, t("auth_regist.password") %>
 			<%= form.password_field :password %>
 
-			<%= form.submit 'Войти' %>
+			<%= form.submit t("auth_regist.login") %>
 		<% end %>
 	</div>
 </div>

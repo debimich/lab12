@@ -12,16 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.label :nickname, "Логин", style: "display: block" %>
+    <%= form.label :nickname, t("auth_regist.nickname"), style: "display: block" %>
     <%= form.text_field :nickname %>
 
-    <%= form.label :password, "Пароль", style: "display: block" %>
+    <%= form.label :password, t("auth_regist.password"), style: "display: block" %>
     <%= form.password_field :password %>
   </div>
 
   <br>
 
   <div>
-    <%= form.submit "Отправить форму" %>
+    <%= form.submit t "auth_regist.submit" %>
   </div>
 <% end %>

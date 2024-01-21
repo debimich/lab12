@@ -14,9 +14,9 @@ class SessionsController < ApplicationController
     if @user.present?
       session[:user_id] = @user.id
 
-      redirect_to root_path, notice: 'Вы успешно вошли в аккаунт'
+      redirect_to root_path, alert: t('sucin')
     else
-      flash.now[:alert] = 'Неправильные никнейм или пароль'
+      flash.now[:alert] = t('wrongparam')
 
       render :new
     end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
 
-    redirect_to root_path, notice: 'Вы вышли из аккаунта'
+    redirect_to root_path, alert: t('meslogout')
   end
 
   def set_params

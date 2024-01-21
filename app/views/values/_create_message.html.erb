@@ -1,8 +1,8 @@
 <table border="1">
   <tr>
-    <th>Значение</th>
+    <th><%= t 'value' %></th>
 	<th></th>
-    <th>Автор</th>
+    <th><%= t 'author' %></th>
   </tr>
 
   <% @values.each do |vl| %>
@@ -11,7 +11,7 @@
 		<td> <%= vl[:val] %> </td>
 		<td>
 			<% if current_user == vl_user %>
-				<small class="text-danger"><%= button_to "[x]", value_path, method: :delete, params: {id: vl[:id]}, class: "btn btn-link btn-sm nav-link", form: { data: { turbo_confirm: "Вы уверены?" } } %></small>
+				<small class="text-danger"><%= button_to "[x]", value_path, method: :delete, params: {id: vl[:id]}, class: "btn btn-link btn-sm nav-link", form: { data: { turbo_confirm: t("ausure") } } %></small>
 			<% end %>
 		</td>
 		<td><%= vl_user.nickname %></td>

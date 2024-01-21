@@ -19,12 +19,15 @@ class UsersController < ApplicationController
   def edit; end
 
   def create
-    redirect_to('/users/new', alert: 'Невалидные данные') and return if invalid_data?
-    redirect_to('/users/new', alert: 'Данное имя занято') and return if User.find_by(nickname: user_params[:nickname]).present?
+    redirect_to('/users/new', alert: t('wrongparam')) and return if invalid_data?
+    if User.find_by(nickname: user_params[:nickname]).present?
+      redirect_to('/users/new',
+                  alert: t('wrongname')) and return
+    end
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(root_path, notice: 'Пользователь был успешно создан.') }
+        format.html { redirect_to(root_path, notice: t('succreate')) }
 
         session[:user_id] = @user.id
       else
@@ -34,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_to(root_path, 'Вы не можете выполнить данное действие') and return if session[:user_id] != @user.id
+    redirect_to(root_path, t('wrongaction')) and return if session[:user_id] != @user.id
 
     respond_to do |format|
       if @user.update(user_params)
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    redirect_to(root_path, 'Вы не можете выполнить данное действие') and return if session[:user_id] != @user.id
+    redirect_to(root_path, t('wrongaction')) and return if session[:user_id] != @user.id
 
     @user.destroy
 

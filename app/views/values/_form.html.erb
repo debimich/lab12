@@ -2,10 +2,10 @@
 	<% if current_user.present? %>
 
 		<%= form_with scope: :values, url: values_path do |form| %>
-			<%= form.label :val, 'Введите значение' %><br>
+			<%= form.label :val, t("entval") %><br>
 			<%= form.text_area :val, autocomplete: 'off'%><br>
 			<%= form.hidden_field :definition, value: definition[:id] %>
-			<%= form.submit 'Добавить' %>
+			<%= form.submit t("form.add") %>
 		<% end %>
 	<% end %>
 </div>

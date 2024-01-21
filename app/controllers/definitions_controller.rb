@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
+# DefinitionsController
 class DefinitionsController < ApplicationController
   before_action :set_params, only: %i[create]
   before_action :get_definitions, only: %i[new create destroy]
 
-  def new
-  end
+  def new; end
 
   def create
     @definition = Definition.new(def: @definition_params[:def], User: current_user)
 
     if @definition.save
-      redirect_to(request.referrer, alert: 'Вы успешно добавили определение')
+      redirect_to(request.referrer, alert: t("sucadd"))
     else
       redirect_to(request.referrer, alert: @definition.errors.full_messages[0])
     end
@@ -22,14 +24,15 @@ class DefinitionsController < ApplicationController
   def show
     @definition_required = Definition.find_by(id: params[:definition_id])
     @values = @definition_required.Values
-    if @values.nil?
-      @values = []
-    end
+    return unless @values.nil?
+
+    @values = []
   end
 
   def set_params
     @definition_params = params.require(:definitions).permit(:def)
   end
+
   def get_definitions
     @definitions = Definition.all
   end
