@@ -1,0 +1,21 @@
+<h1>Словарь</h1>
+<table border="1">
+  <tr>
+    <th>Определение</th>
+	<th></th>
+    <th>Автор</th>
+  </tr>
+
+  <% @definitions.each do |defin| %>
+  <% defin_user = defin.User %>
+    <tr>
+		<td> <%= button_to defin[:def], "/definitions/#{defin[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %> </td>
+		<td>
+			<% if current_user == defin_user %>
+				<small class="text-danger"><%= button_to "[x]", "definitions/destroy", method: :delete, params: {id: defin[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
+			<% end %>
+		</td>
+		<td><%= defin_user.nickname %></td>
+	</tr>
+  <% end %>
+</table>

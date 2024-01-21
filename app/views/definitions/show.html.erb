@@ -1,0 +1,3 @@
+<h1><%= @definition_required[:def] %></h1>
+<%= render partial: 'values/form', locals: { definition: @definition_required } %>
+<div id='result-container'><%= render partial: 'values/create_message', locals: { values: @values } %></div>

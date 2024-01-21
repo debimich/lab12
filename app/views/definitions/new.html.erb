@@ -1,0 +1,11 @@
+<% if current_user.present? %>
+	<h1>Добавить определение</h1>
+
+	<%= form_with scope: :definitions, url: definitions_path do |form| %>
+		<%= form.label :def, 'Введите определение' %><br>
+		<%= form.text_field :def %><br>
+		<%= form.submit 'Добавить' %>
+	<% end %>
+<% end %>
+
+<div id='result-container'><%= render 'create_message' %></div>

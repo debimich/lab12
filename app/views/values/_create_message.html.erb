@@ -1,0 +1,20 @@
+<table border="1">
+  <tr>
+    <th>Значение</th>
+	<th></th>
+    <th>Автор</th>
+  </tr>
+
+  <% @values.each do |vl| %>
+  <% vl_user = vl.User %>
+    <tr>
+		<td> <%= vl[:val] %> </td>
+		<td>
+			<% if current_user == vl_user %>
+				<small class="text-danger"><%= button_to "[x]", "values/destroy", method: :delete, params: {id: vl[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
+			<% end %>
+		</td>
+		<td><%= vl_user.nickname %></td>
+	</tr>
+  <% end %>
+</table>
