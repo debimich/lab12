@@ -1,10 +1,11 @@
-<% if current_user.present? %>
-	<h1>Добавить значение</h1>
+<div class="form">
+	<% if current_user.present? %>
 
-	<%= form_with scope: :values, url: values_path do |form| %>
-		<%= form.label :val, 'Введите значение' %><br>
-		<%= form.text_field :val %><br>
-		<%= form.hidden_field :definition, value: definition[:id] %>
-		<%= form.submit 'Добавить' %>
+		<%= form_with scope: :values, url: values_path do |form| %>
+			<%= form.label :val, 'Введите значение' %><br>
+			<%= form.text_area :val, autocomplete: 'off'%><br>
+			<%= form.hidden_field :definition, value: definition[:id] %>
+			<%= form.submit 'Добавить' %>
+		<% end %>
 	<% end %>
-<% end %>
+</div>

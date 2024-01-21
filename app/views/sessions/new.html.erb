@@ -1,11 +1,14 @@
-<h1>Авторизация</h1>
+<div class="auth_div">
+	<h1>Авторизация</h1>
+	<div class="form">
+		<%= form_with scope: :sessions, url: sessions_path, data: { turbo: false } do |form| %>
+			<%= form.label :nickname, 'Ваш никнейм' %>
+			<%= form.text_field :nickname %>
 
-<%= form_with scope: :sessions, url: sessions_path, data: { turbo: false } do |form| %>
-	<%= form.label :nickname, 'Ваш никнейм' %><br>
-	<%= form.text_field :nickname %><br><br>
+			<%= form.label :password, 'Ваш пароль' %>
+			<%= form.password_field :password %>
 
-	<%= form.label :password, 'Ваш пароль' %><br>
-	<%= form.password_field :password %><br><br>
-
-	<%= form.submit 'Войти' %>
-<% end %>
+			<%= form.submit 'Войти' %>
+		<% end %>
+	</div>
+</div>

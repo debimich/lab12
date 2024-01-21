@@ -9,7 +9,7 @@ class DefinitionsController < ApplicationController
     @definition = Definition.new(def: @definition_params[:def], User: current_user)
 
     if @definition.save
-      redirect_to(request.referrer, notice: 'Вы успешно добавили определение')
+      redirect_to(request.referrer, alert: 'Вы успешно добавили определение')
     else
       redirect_to(request.referrer, alert: @definition.errors.full_messages[0])
     end

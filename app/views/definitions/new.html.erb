@@ -1,11 +1,13 @@
-<% if current_user.present? %>
-	<h1>Добавить определение</h1>
-
-	<%= form_with scope: :definitions, url: definitions_path do |form| %>
-		<%= form.label :def, 'Введите определение' %><br>
-		<%= form.text_field :def %><br>
-		<%= form.submit 'Добавить' %>
+<div class="def_div">
+	<% if current_user.present? %>
+		<div class="form">
+			<%= form_with scope: :definitions, url: definitions_path do |form| %>
+				<%= form.label :def, 'Введите определение' %>
+				<%= form.text_field :def, autocomplete: 'off'%>
+				<%= form.submit 'Добавить' %>
+			<% end %>
+		</div>
 	<% end %>
-<% end %>
 
-<div id='result-container'><%= render 'create_message' %></div>
+	<div id='result-container'><%= render 'create_message' %></div>
+</div>

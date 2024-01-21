@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Laba12</title>
+    <title>Dictionary</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,28 +9,51 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-    <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" %>
-    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" %>
   </head>
 
   <body>
-    <header class="container">
-      <% if current_user.present? %>
-        Вы зашли как <strong><%= current_user.nickname %></strong> |
-        <%= link_to "Выйти", '/sessions/destroy', method: :delete, id: "exit_link" %>
-      <% else %>
-        <%= link_to "Войти", new_session_path %> |
-        <%= link_to "Зарегистрироваться", new_user_path %>
-      <% end %>
-      <br>
+    <header>
+		<div class = 'container header'>
+			<a href="/"><h1>Словарь</h1></a>
+			<div>
+				<% if current_user.present? %>
+					Вы зашли как <strong><%= current_user.nickname %></strong> 
+					<%= link_to "Выйти", '/sessions/destroy', method: :delete, id: "exit_link" %>
+				<% else %>
+					<%= link_to "Войти", new_session_path %> 
+					<%= link_to "Зарегистрироваться", new_user_path %>
+				<% end %>
+			</div>
+	  </div>
     </header>
     <main class="container">
-      <% if flash[:alert].present? %>
-        <strong><%= flash[:alert] %></strong>
-      <% end %>
-
-      <%= yield %>
+		<div class="message_alert">
+		<% if flash[:alert].present? %>
+			<strong><%= flash[:alert] %></strong>
+		<% end %>
+		</div>
+		<div class="yield_cont">
+		<%= yield %>
+		</div>
+		<dialog id="turbo-confirm">
+			<form method="dialog">
+				<p>Вы уверены, что хотите удалить?</p>
+				<div>
+					<button value="confirm">Подтвердить</button>
+					<button value="cancel">Отмена</button>
+				</div>
+			</form>
+		</dialog>
     </main>
-    <footer></footer>
+    <footer>
+		<div class="container footer">
+			<p>Ссылки на автора</p>
+			<div>
+				<a href="https://vk.com/id558236008">ВК</a>
+				<a href="https://vk.com/id558236008">Ютуб</a>
+				<a href="https://vk.com/id558236008">Телега</a>
+			</div>
+		</>
+	</footer>
   </body>
 </html>

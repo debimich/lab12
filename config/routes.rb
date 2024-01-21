@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   delete 'sessions/destroy', to: 'sessions#destroy'
   delete 'definitions/destroy', to: 'definitions#destroy'
-  delete 'values/destroy', to: 'values#destroy'
+  resource :value, only: %i[ destroy ]
   resources :users
 
   root to: "definitions#new"

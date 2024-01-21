@@ -11,7 +11,7 @@
 		<td> <%= vl[:val] %> </td>
 		<td>
 			<% if current_user == vl_user %>
-				<small class="text-danger"><%= button_to "[x]", "values/destroy", method: :delete, params: {id: vl[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
+				<small class="text-danger"><%= button_to "[x]", value_path, method: :delete, params: {id: vl[:id]}, class: "btn btn-link btn-sm nav-link", form: { data: { turbo_confirm: "Вы уверены?" } } %></small>
 			<% end %>
 		</td>
 		<td><%= vl_user.nickname %></td>
